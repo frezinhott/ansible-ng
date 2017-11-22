@@ -1,0 +1,8 @@
+ubuntu-slave1
+ubuntu-slave2
+
+[webservers]
+ubuntu-slave1
+
+[appservers]
+ubuntu-slave2

@@ -1,0 +1,44 @@
+- name: "Installing Maven"
+  apt:
+    name: maven
+    state: latest
+  notify: copy-m2-settings
+
+- name: "Installing Git"
+  apt:
+    name: git
+    state: latest 
+
+- name: "Installing OpenJDK-8-JDK"
+  apt:
+    name: openjdk-8-jdk
+    state: latest
+
+- name: "Installing Meld"
+  apt:
+    name: meld
+    state: latest
+
+- name: "Checking for Eclipse-J2EE Installation"
+  stat:
+    path: '{{ eclipse_extract_dir }}/eclipse'
+  register: eclipse_installed
+
+- name: "Installing Eclipse-J2EE"
+  unarchive:
+    src: '{{ eclipse_src_file }}' 
+    dest: '{{ eclipse_extract_dir }}'
+  when: eclipse_installed.stat.exists == False
+  notify: configure-eclipse
+
+- name: "Checking for Spark Installations"
+  stat:
+    path: '{{ spark_extract_dir }}/spark'
+  register: spark_installed
+
+- name: "Installing Spark"
+  unarchive:
+    src: '{{ spark_src_file }}' 
+    dest: '{{ spark_extract_dir }}'
+  when: spark_installed.stat.exists == False 
+  notify: configure-spark

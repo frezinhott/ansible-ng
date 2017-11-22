@@ -1,0 +1,9 @@
+eclipse_src_file: eclipse-jee-oxygen-1a-linux-gtk-x86_64.tar.gz
+eclipse_extract_dir: /usr/local/share
+
+spark_src_file: spark-2.2.0-bin-hadoop2.7.tgz
+spark_extract_dir: /usr/local/share
+spark_directory_name: spark-2.2.0-bin-hadoop2.7
+
+users:
+  - frezinhott

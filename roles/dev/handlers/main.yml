@@ -1,0 +1,39 @@
+- name: make-m2-dir
+  file:
+    path: '/home/{{ item }}/.m2'
+    state: directory
+    owner: '{{ item }}'
+    group: '{{ item }}'
+  with_items:
+    - '{{ users[0] }}'
+  listen: configure-maven
+
+- name: copy-m2-settings
+  copy:
+    src: settings.xml
+    dest: '/home/{{ item }}/.m2/settings.xml'
+    owner: '{{ item }}'
+    group: '{{ item }}'
+  with_items:
+    - '{{ users[0] }}'
+  listen: configure-maven
+
+#- name: rename-eclipse-dir
+#  command: mv '{{ eclipse_extract_dir }}/{{ eclipse_directory_name }}' '{{ eclipse_extract_dir }}/eclipse-keplar'
+#  listen: configure-eclipse
+
+- name: export-eclipse-path
+  lineinfile:
+    name: /etc/bash.bashrc
+    line: 'export PATH={{ eclipse_extract_dir }}/eclipse:$PATH'
+  listen: configure-eclipse
+
+- name: rename-spark-dir
+  command: mv '{{ spark_extract_dir }}/{{ spark_directory_name }}' '{{ spark_extract_dir }}/spark'
+  listen: configure-spark
+
+- name: export-spark-path 
+  lineinfile:
+    name: /etc/bash.bashrc 
+    line: 'export PATH={{ spark_extract_dir }}/spark/bin:$PATH'
+  listen: configure-spark
