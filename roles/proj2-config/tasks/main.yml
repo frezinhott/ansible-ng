@@ -1,0 +1,7 @@
+- name: "Copying Proj2-DBConnection.config"
+  template:
+    src: Proj2-DBConnection.config
+    dest: /home/frezinhott/Proj2-DBConnection.config
+    owner: root
+    group: root
+    mode: 0644

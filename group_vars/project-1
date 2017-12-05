@@ -1,0 +1,4 @@
+# variables that are visible from the project-1 servers
+
+dburl: jdbc:postgresql://localhost:5432/postgres/project1
+dbpassword: myProject1Password

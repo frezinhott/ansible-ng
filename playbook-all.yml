@@ -3,3 +3,14 @@
   become: true
   roles:
   - dev
+
+- hosts: project-1
+  become: true
+  roles:
+  - proj1-config
+
+- hosts: project-2
+  become: true
+  roles:
+  - proj2-config 
+

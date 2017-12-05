@@ -1,8 +1,8 @@
 ubuntu-slave1
 ubuntu-slave2
 
-[webservers]
+[project-1]
 ubuntu-slave1
 
-[appservers]
+[project-2]
 ubuntu-slave2
